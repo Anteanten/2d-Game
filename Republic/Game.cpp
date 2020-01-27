@@ -14,6 +14,8 @@ Game::Game()
 void Game::run(sf::RenderWindow& window, double dt)
 {
 	player.update(dt);
+	for(int i = 0; i < 3; i++)
+		collision.solidCollision(*player.getEntity(), map->getTerrain(i));
 }
 
 void Game::render(sf::RenderWindow& window, double dt)

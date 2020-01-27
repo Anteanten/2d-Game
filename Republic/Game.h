@@ -4,11 +4,14 @@
 #include "State.h"
 #include "Map.h"
 #include "Player.h"
+#include "Collision.h"
 
 class Game : public State {
 private:
 	Map* map;
 	Player player;
+
+	Collision collision;
 
 public:
 	Game();

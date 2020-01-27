@@ -4,29 +4,31 @@ Map::Map(int sizeX, int sizeY)
 {
 	this->sizeX = sizeX;
 	this->sizeY = sizeY;
-	for (int i = 0; i < sizeY; i++) {
-		for (int j = 0; j < sizeX; j++) {
-			tiles.push_back(nullptr);
-		}
-	}
-	for (int j = 14; j < 20; j++) {
-		for (int i = 0; i < 25; i++) {
-			tiles.at(j * sizeX + i) = new sf::RectangleShape;
+	
+	terrain.push_back(new sf::RectangleShape);
+	terrain.at(0)->setPosition(0, 400);
+	terrain.at(0)->setSize(sf::Vector2f(300, 200));
+	terrain.at(0)->setFillColor(sf::Color::White);
+	
+	terrain.push_back(new sf::RectangleShape);
+	terrain.at(1)->setPosition(0, 0);
+	terrain.at(1)->setSize(sf::Vector2f(500, 100));
+	terrain.at(1)->setFillColor(sf::Color::White);
 
-			tiles.at(j * sizeX + i)->setPosition(sf::Vector2f(i * 32, j * 32));
-			tiles.at(j * sizeX + i)->setTexture(TextureManager::getInstance()->getTexture("tile.png"));
-			tiles.at(j * sizeX + i)->setSize(sf::Vector2f(32, 32));
-		}
-	}
-
+	terrain.push_back(new sf::RectangleShape);
+	terrain.at(2)->setPosition(300, 500);
+	terrain.at(2)->setSize(sf::Vector2f(800, 100));
+	terrain.at(2)->setFillColor(sf::Color::White);
 }
 
 void Map::render(sf::RenderWindow& window)
 {
-	for (int i = 0; i < sizeY; i++) {
-		for (int j = 0; j < sizeX; j++) {
-			if (tiles.at(i * sizeX + j) != nullptr)
-				window.draw(*tiles.at(i * sizeX + j));
-		}
+	for (int i = 0; i < terrain.size(); i++) {
+		window.draw(*terrain.at(i));
 	}
+}
+
+sf::RectangleShape* Map::getTerrain(int index)
+{
+	return terrain.at(index);
 }

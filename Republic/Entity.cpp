@@ -2,6 +2,8 @@
 
 Entity::Entity()
 {
+	velocity = sf::Vector2f(0, 0);
+	position = sf::Vector2f(0, 0);
 }
 
 Entity::Entity(std::string texturePath)
@@ -11,15 +13,19 @@ Entity::Entity(std::string texturePath)
 
 void Entity::update(double dt)
 {
+	oldPosition = position;
+	position += velocity * (float)dt;
+	hitbox.setPosition(position);
+	sprite.setPosition(position);
+
 	for (int i = 0; i < components.size(); i++) {
 		components.at(i)->update(dt, *this);
 	}
-
-	sprite.setPosition(sprite.getPosition() + velocity * (float)dt);
 }
 
 void Entity::render(sf::RenderWindow& window, double dt)
 {
+	sprite.setPosition(sprite.getPosition() + velocity * (float)dt);
 	window.draw(sprite);
 }
 
@@ -45,10 +51,25 @@ sf::Vector2f Entity::getVelocity() const
 
 void Entity::setPosition(sf::Vector2f position)
 {
-	sprite.setPosition(position);
+	this->position = position;
 }
 
 sf::Vector2f Entity::getPosition() const
 {
-	return sprite.getPosition();
+	return position;
+}
+
+sf::Vector2f Entity::getOldPosition() const
+{
+	return oldPosition;
+}
+
+void Entity::setHitboxSize(sf::Vector2f size)
+{
+	hitbox.setSize(size);
+}
+
+sf::Vector2f Entity::getHitboxSize() const
+{
+	return hitbox.getSize();
 }

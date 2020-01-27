@@ -14,6 +14,7 @@ public:
 	void update(double dt);
 	void render(sf::RenderWindow& window, double dt);
 
+	Entity* getEntity();
 };
 
 #endif

@@ -9,8 +9,11 @@
 class Entity {
 private:
 	sf::Sprite sprite;
+	sf::RectangleShape hitbox;
 
 	sf::Vector2f velocity;
+	sf::Vector2f position;
+	sf::Vector2f oldPosition;
 
 	std::vector<EntityComponent*> components;
 public:
@@ -32,6 +35,10 @@ public:
 
 	void setPosition(sf::Vector2f position);
 	sf::Vector2f getPosition() const;
+	sf::Vector2f getOldPosition() const;
+
+	void setHitboxSize(sf::Vector2f size);
+	sf::Vector2f getHitboxSize() const;
 
 };
 
