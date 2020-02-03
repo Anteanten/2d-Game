@@ -15,6 +15,8 @@ public:
 	void render(sf::RenderWindow& window, double dt);
 
 	Entity* getEntity();
+
+	void controll(sf::Event key);
 };
 
 #endif
