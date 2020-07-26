@@ -14,7 +14,7 @@ Game::Game()
 void Game::run(sf::RenderWindow& window, double dt)
 {
 	player.update(dt);
-	for(int i = 0; i < 3; i++)
+	for(int i = 0; i < 4; i++)
 		collision.solidCollision(*player.getEntity(), map->getTerrain(i));
 
 	sf::Event event;

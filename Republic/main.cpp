@@ -5,6 +5,10 @@
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML works!");
+	sf::RectangleShape background;
+	background.setFillColor(sf::Color::White);
+	background.setPosition(sf::Vector2f(0, 0));
+	background.setSize(sf::Vector2f(window.getSize()));
 
 
 	//TIME
@@ -36,6 +40,7 @@ int main()
 
 		//GAME LOOP
 		window.clear();
+		window.draw(background);
 
 		stateManager.run(window, dt);
 		stateManager.render(window, dt);
